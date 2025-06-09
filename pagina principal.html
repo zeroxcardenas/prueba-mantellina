@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mantellina 99.9FM</title>
+    <link rel="icon" sizes="192x192" href="media/logo-mantellina.png">
+    <style>
+        /* Restablecer y estilos básicos */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: #ffffff;
+            color: #333;
+            line-height: 1.6;
+        }
+        /* Estilos de encabezado */
+        header {
+            background: rgba(101, 33, 165, 0.95);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .logo {
+            font-size: 1.75rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            transition: background-color 0.3s ease;
+        }
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        /* Estilos de la sección de héroe */
+        #hero {
+            background: url('media/hero.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        #hero h1 {
+            font-size: 3rem;
+            margin: 0 0 1rem;
+        }
+        #hero button {
+            background: #7c3aed;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #hero button:hover {
+            background: #5b21b6;
+        }
+        /* Estilos de la sección de historia */
+        #historia {
+            padding: 3rem 0;
+            background: #f7f7f7;
+        }
+        #historia .texto {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        /* Estilos de sección de programas */
+        #programas {
+            padding: 3rem 0;
+            background: #333;
+            color: #ffffff;
+        }
+        .programas {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .carta {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 4px 8px rgba(253, 248, 248, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1 1 300px; /* Flexibilidad de crecimiento, flexibilidad de encogimiento, flexibilidad de base */
+        }
+        .carta:first-child{
+            background-image: linear-gradient(
+            0deg,
+            rgba(0,0,0,0.5),
+            rgba(0,0,0,0.5)
+            )
+            ,url("media/100_2928.jpg");
+        }
+        .carta:nth-child(2){
+            background-image: linear-gradient(
+            0deg,
+            rgba(0,0,0,0.5),
+            rgba(0,0,0,0.5)
+             )
+            ,url("media/100_9853.JPG");
+        }
+
+        .carta:nth-child(3){
+             background-image: linear-gradient(
+            0deg,
+            rgba(0,0,0,0.5),
+            rgba(0,0,0,0.5)
+            )
+            ,url("media/100_9852.jpg");
+        }
+        .carta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        /* Estilos de la sección de noticias */
+        #noticias {
+            padding: 3rem 0;
+            background: #f7f7f7;
+            text-align: center;
+        }
+        #noticias ul {
+            list-style: none;
+            padding: 0;
+        }
+        #noticias li {
+            margin: 0.5rem 0;
+            font-weight: bold;
+        }
+        /* Estilos de la sección de consultas */
+        #consultas {
+            padding: 3rem 0;
+            text-align: center;
+        }
+        #consultas button {
+            background: #7c3aed;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #consultas button:hover {
+            background: #5b21b6;
+        }
+        /* Estilos de pie de página */
+        footer {
+            background: rgba(101, 33, 165, 0.95);
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+        /* Estilos de reproductor de audio */
+        .player-flotante {
+            position: fixed;
+            bottom: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 2.5rem;
+            }
+            .programas {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <p class="logo">Mantellina 99.9FM</p>
+            <nav>
+                <a href="historia/Historia.html">Historia</a>
+                <a href="programas/Programas.html">Programación</a>
+                <a href="noticias/noticia.html">Noticias</a>
+            </nav>
+        </div>
+    </header>
+    <section id="hero">
+        <h1>Mantellina 99.9FM <br> La Voz de la Comunidad</h1>
+        <button>Escúchanos <br> EN VIVO</button>
+    </section>
+    <section id="historia">
+        <div class="container">
+            <div class="texto">
+                <h2>Historia</h2>
+                <p>Mantellina 99.9FM fue fundada en 2001 con el objetivo de brindar una plataforma de expresión para la comunidad local. Desde entonces, hemos crecido y evolucionado para convertirnos en una de las emisoras de radio más populares y respetadas de la región. Nuestra experiencia y especialización en la radiodifusión nos permiten ofrecer contenido de alta calidad y entretenimiento para nuestra audiencia.</p>
+            </div>
+        </div>
+    </section>
+    <section id="programas">
+        <div class="container">
+            <h2>Nuestros Programas</h2>
+            <div class="programas">
+                <div class="carta">
+                    <h3>Programación en Vivo</h3>
+                    <p>Transmisiones en vivo de música, noticias y programas de entretenimiento</p>
+                    <button>+ Info</button>
+                </div>
+                <div class="carta 1">
+                    <h3>Producción de Contenido</h3>
+                    <p>Producción de contenido personalizado para nuestros clientes y patrocinadores</p>
+                    <button>+ Info</button>
+                </div>
+                <div class="carta 2">
+                    <h3>Podcasting</h3>
+                    <p>Creación y distribución de podcasts para nuestros clientes y patrocinadores</p>
+                    <button>+ Info</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="noticias">
+        <div class="container">
+            <ul>
+                <li>✔️ Noticias en vivo ✔️</li>
+                <li>✔️ Deportes ✔️</li>
+            </ul>
+        </div>
+    </section>
+    <section id="consultas">
+        <h3>¿Quieres saber más sobre nuestros servicios?</h3>
+        <p>Concerta una consulta con nuestros expertos en radiodifusión <br> y descubre cómo podemos ayudarte a alcanzar tus objetivos.</p>
+        <button>Consultar</button>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mantellina 99.9FM. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <div class="player-flotante">
+        <audio id="audio-player" src="MUSICA1.mpeg" controls></audio>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Noticias - Mantellina 99.9FM</title>
+  <link rel="icon" sizes="192x192" href="logo-mantellina.png">
+  <style>
+    /* Restablecer y base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+      background: #ffffff;
+      color: #6b7280;
+      font-size: 18px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Envoltorio de contenedor */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+      flex-grow: 1;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(101,33,165,0.95);
+      color: white;
+      padding: 1.25rem 2rem;
+      box-shadow: 0 2px 10px rgba(101,33,165,0.35);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 1.5rem;
+      user-select: none;
+      font-variant: small-caps;
+    }
+    /* Marcador de posición de logotipo o marca */
+    .logo {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #e0d7ff;
+      user-select: text;
+    }
+    nav {
+      display: flex;
+      gap: 2rem;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    nav a:hover,
+    nav a:focus-visible {
+      background-color: rgba(255 255 255 / 0.15);
+      outline: none;
+    }
+    nav a[aria-current="page"] {
+      background-color: rgba(255 255 255 / 0.3);
+      cursor: default;
+    }
+    /* Título de la página */
+    h1 {
+      font-weight: 800;
+      font-size: 3rem;
+      margin: 0 0 3rem 0;
+      color: #3f3f46;
+      user-select: text;
+      text-align: center;
+    }
+    /* Estilo de la sección de noticias */
+    .noticias {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .noticia {
+      background: #f7f7f7;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .noticia:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    .noticia img {
+      width: 100%;
+      height: auto;
+      border-bottom: 2px solid rgba(101, 33, 165, 0.5);
+    }
+    .noticia h3 {
+      font-size: 1.5rem;
+      margin: 1rem 0 0.5rem;
+      color: #3f3f46;
+      text-align: center;
+    }
+    .noticia p {
+      padding: 0 1rem 1rem;
+      text-align: justify;
+      color: #4b5563;
+    }
+    /* Estilo de pie de página */
+    footer {
+      padding: 2rem 1rem;
+      background: #f7f7f7;
+      text-align: center;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #9ca3af;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" aria-label="Logo Mantellina 99.9FM">Mantellina 99.9FM</div>
+  </header>
+  <main>
+    <h1>Noticias</h1>
+    <section class="noticias">
+      <h2>Noticias Históricas en Mantellina</h2>
+      <div class="noticia">
+        <img src="imagen/imagen (2).jpeg" alt="Imagen 1">
+        <h3>55 AÑOS CONSTRUYENDO NUESTRO PAIS</h3>
+        <p>Momentos en los que se coloca la primera piedra para la construcción de la planta de Cementos Táchira.</p>
+      </div>
+      <div class="noticia">
+        <img src="imagen/imagen (3).jpeg" alt="Imagen 2">
+        <h3>PREVENGA DE GUASIMOS CONFORMAN ALIANZA ELECTORAL CON MEP Y MAS</h3>
+        <p>Después de una serie de conversaciones y de sondeos ante la opinión pública de los habitantes de Guásimos (Palmira) y con miras a rescatar el prestigio del poder municipal, el Grupo de Electores "Presencia Electoral Vecinos de Guásímos y los independientes agrupados en ELINGUA, conjuntamente con el Movimiento al Socialismo, Movimiento Electoral del Pueblo, tendientes asimismo a presentar a los electores del Municipio una alternativa de cambio para el proceso electoral venidero.</p>
+      </div>
+      <div class="noticia">
+        <img src="imagen/imagen (9).jpeg" alt="Imagen 3">
+        <h3>DESDE PALMIRA PARA LA HISTORIA</h3>
+        <p>Velásquez es conocido por su defensa de la democracia y los derechos humanos, enfrentando diversos regímenes autoritarios a lo largo de su vida. También fue un ferviente crítico de la corrupción. En su papel como presidente, trató de estabilizar la economía y promover el diálogo nacional en un contexto de crisis política y económica. Además de su carrera política, Velásquez fue un prolífico escritor y articulista, contribuyendo al análisis político y social de Venezuela. Su legado incluye su compromiso con la democracia y la búsqueda de un futuro mejor para su país.</p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 Mantellina 99.9FM</p>
+  </footer>
+</body>
+</html>

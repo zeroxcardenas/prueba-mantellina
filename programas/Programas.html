@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Programación - Mantellina 99.9FM</title>
+  <link rel="icon" sizes="192x192" href="logo-mantellina.png" />
+  <style>
+    /* Restablecer y base */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+      background: #ffffff;
+      color: #6b7280;
+      font-size: 18px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Envoltorio de contenedor */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+      flex-grow: 1;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(101,33,165,0.95);
+      color: white;
+      padding: 1.25rem 2rem;
+      box-shadow: 0 2px 10px rgba(101,33,165,0.35);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 700;
+      font-size: 1.5rem;
+      user-select: none;
+      font-variant: small-caps;
+    }
+    /* Marcador de posición de logotipo o marca */
+    .logo {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #e0d7ff;
+      user-select: text;
+    }
+    nav {
+      display: flex;
+      gap: 2rem;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.375rem;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+    nav a:hover,
+    nav a:focus-visible {
+      background-color: rgba(255 255 255 / 0.15);
+      outline: none;
+    }
+    nav a[aria-current="page"] {
+      background-color: rgba(255 255 255 / 0.3);
+      cursor: default;
+    }
+    /* Título de la página */
+    h1 {
+      font-weight: 800;
+      font-size: 3rem;
+      margin: 0 0 3rem 0;
+      color: #3f3f46;
+      user-select: text;
+      text-align: center;
+    }
+    /* Estilo de secciones */
+    section {
+      background: #f7f7f7;
+      border-radius: 0.75rem;
+      box-shadow: 0 8px 20px rgb(0 0 0 / 0.06);
+      padding: 3rem 3rem 4rem;
+      margin-bottom: 3.5rem;
+      transition: box-shadow 0.3s ease;
+    }
+    section:hover {
+      box-shadow: 0 12px 30px rgb(101 33 165 / 0.2);
+    }
+    section#introduccion {
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-bottom: 4.5rem;
+    }
+    /* Titulares de sección */
+    h2 {
+      font-weight: 700;
+      font-size: 3rem;
+      color: #3f3f46;
+      margin-top: 0;
+      margin-bottom: 2rem;
+      line-height: 1.1;
+      user-select: text;
+      text-align: center;
+    }
+    /* Párrafos */
+    p {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 500;
+      font-size: 1.125rem;
+      color: #4b5563;
+      letter-spacing: 0.015em;
+      text-align: center;
+    }
+    /* Listas de programas */
+    ul {
+      list-style: none;
+      padding-left: 0;
+      max-width: 450px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    li {
+      font-weight: 600;
+      font-size: 1.125rem;
+      padding: 0.7rem 1rem;
+      margin-bottom: 1rem;
+      color: #374151;
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 6px rgb(0 0 0 / 0.1);
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      transition:
+        background-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+      cursor: default;
+      user-select: none;
+    }
+    li:hover {
+      background-color: #e0daf6;
+      box-shadow: 0 8px 14px rgb(101 33 165 / 0.3);
+      transform: translateY(-2px);
+      color: #5b21b6;
+    }
+    /* Estilo de etiqueta de tiempo */
+    li::before {
+      content: attr(data-hours);
+      flex: 0 0 6.5rem;
+      font-weight: 700;
+      color: #7c3aed;
+      user-select: text;
+    }
+    /* Estilos de formulario */
+    form {
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    label {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #4b5563;
+      user-select: text;
+    }
+    input, textarea {
+      font-family: inherit;
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid #d1d5db;
+      border-radius: 0.5rem;
+      outline-offset: 2px;
+      transition: border-color 0.25s ease;
+    }
+    input:focus, textarea:focus {
+      border-color: #7c3aed;
+      box-shadow: 0 0 8px rgb(124 58 237 / 0.4);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    button {
+      background-color: #7c3aed;
+      color: white;
+      font-weight: 700;
+      font-size: 1.25rem;
+      padding: 1rem 1.5rem;
+      border: none;
+      border-radius: 0.625rem;
+      cursor: pointer;
+      align-self: center;
+      width: 50%;
+      box-shadow: 0 8px 20px rgb(124 58 237 / 0.35);
+      transition:
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+      user-select: none;
+    }
+    button:hover,
+    button:focus {
+      background-color: #5b21b6;
+      box-shadow: 0 12px 28px rgb(91 33 182 / 0.55);
+      outline: none;
+    }
+
+    /* Estilo de pie de página */
+    footer {
+      padding: 2rem 1rem;
+      background: #f7f7f7;
+      text-align: center;
+      font-weight: 500;
+      font-size: 1rem;
+      color: #9ca3af;
+      user-select: none;
+    }
+
+    /* Ajustes responsivos */
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 2.5rem;
+      }
+      h1 {
+        font-size: 2.25rem;
+        margin-bottom: 2rem;
+      }
+      ul {
+        max-width: 100%;
+        padding: 0 1rem;
+      }
+      li {
+        font-size: 1rem;
+        padding: 0.5rem 0.75rem;
+      }
+      button {
+        width: 70%;
+      }
+      header {
+        flex-wrap: wrap;
+        font-size: 1.25rem;
+      }
+      nav {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 400px) {
+      button {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" aria-label="Logo Mantellina 99.9FM">Mantellina 99.9FM</div>
+    
+  </header>
+  <main>
+    <h1>Programación</h1>
+
+    <section id="introduccion">
+      <h2>Programas de la Radio</h2>
+      <p>La radio ha sido durante mucho tiempo un medio de comunicación fundamental, que no solo informa, sino que también entretiene y conecta a las comunidades.
+      Una emisora local como Mantellina 99.9 FM se convierte en un punto de encuentro donde los oyentes pueden disfrutar de una
+      variada programación que abarca desde la música y el entretenimiento, hasta análisis profundos sobre la actualidad.</p>
+    </section>
+
+    <section id="programas-manana">
+      <h2>Programas de la mañana</h2>
+      <ul>
+        <li data-hours="5:30 - 7:00">Despertar con Mantellina</li>
+        <li data-hours="7:00 - 8:00">Raíces Venezolanas</li>
+        <li data-hours="8:00 - 10:00">Código del Amor</li>
+        <li data-hours="10:00 - 11:00">Camino de Libertad</li>
+        <li data-hours="11:00 - 12:00">Senderos / Instituciones y personajes</li>
+      </ul>
+    </section>
+
+    <section id="programas-tarde">
+      <h2>Programas de la tarde</h2>
+      <ul>
+        <li data-hours="12:00 - 14:00">Música Instrumental</li>
+        <li data-hours="14:00 - 16:00">Música Bailable</li>
+        <li data-hours="16:00 - 17:00">Tardes Musicales</li>
+        <li data-hours="17:00 - 19:00">Música Venezolana</li>
+      </ul>
+    </section>
+
+    <section id="programas-noche">
+      <h2>Programas de la noche</h2>
+      <ul>
+        <li data-hours="19:00 - 21:00">Música Bailable</li>
+        <li data-hours="21:00 - 00:00">Música del Recuerdo</li>
+      </ul>
+    </section>
+
+    <section id="consultas">
+      <h2>Consultas y Sugerencias</h2>
+      <form>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" placeholder="Nombre" required aria-required="true" />
+        <label for="correo">Correo electrónico:</label>
+        <input type="email" id="correo" placeholder="Correo electrónico" required aria-required="true" />
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" placeholder="Mensaje" required aria-required="true"></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 Mantellina 99.9FM</p>
+  </footer>
+</body>
+</html>
+

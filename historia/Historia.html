@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mantellina 99.9FM - Historia</title>
+  <link rel="icon" sizes="190x190" href="logo-mantellina.png" />
+  <style>
+    /* Restablecimiento de base y tipografía */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #6b7280;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    header {
+      background-color: rgba(101, 33, 165);
+      color: #fff;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(101,33,165,0.2);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 {
+      font-weight: 700;
+      font-size: 2rem;
+      margin: 0;
+    }
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem 4rem;
+    }
+    section {
+      background-color: #f7f7f7;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.05);
+    }
+    section#historia h2,
+    section#galeria h2 {
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: #3f3f46;
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+    p {
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+    }
+    /* Cuadrícula de galería */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+    .galeria img {
+      width: 100%;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(101, 33, 165, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+    }
+    .galeria img:hover,
+    .galeria img:focus {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(101,33,165,0.35);
+      outline: none;
+    }
+
+    /* Superposición de caja de luz */
+    #lightbox-overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 1rem;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    #lightbox-overlay.active {
+      display: flex;
+      animation: fadeIn 0.3s ease forwards;
+    }
+    #lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 1rem;
+      box-shadow: 0 15px 30px rgba(101, 33, 165, 0.35);
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #lightbox-image {
+      max-width: 100%;
+      max-height: 80vh;
+      user-select: none;
+      pointer-events: none;
+      border-radius: 1rem 1rem 0 0;
+      object-fit: contain;
+      background: #fff;
+    }
+    #lightbox-caption {
+      color: #4b5563;
+      padding: 1rem 1.5rem;
+      font-size: 0.9rem;
+      text-align: center;
+      font-weight: 500;
+      user-select: none;
+    }
+    /* Controles */
+    .lightbox-close,
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(101, 33, 165, 0.85);
+      border: none;
+      color: white;
+      width: 2.8rem;
+      height: 2.8rem;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      user-select: none;
+      outline-offset: 2px;
+    }
+    .lightbox-close {
+      top: 1rem;
+      right: 1rem;
+      transform: none;
+      font-size: 1.8rem;
+      border-radius: 0.75rem;
+      padding: 0 0.4rem;
+    }
+    .lightbox-close:hover,
+    .lightbox-prev:hover,
+    .lightbox-next:hover {
+      background: rgba(101, 33, 165, 1);
+    }
+    .lightbox-prev {
+      left: 0.8rem;
+      top: 50%;
+    }
+    .lightbox-next {
+      right: 0.8rem;
+      top: 50%;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mantellina 99.9FM - Historia</h1>
+  </header>
+  <main>
+    <section id="historia">
+      <h2>Historia de la radio</h2>
+      <p>La apertura de la Emisora Mantellina FM 99.9 Stereo, es un sueño hecho realidad, en el pasado viernes 19 de octubre de 2001, con presencia de autoridades representativas del municipio de Guasimos.
+        El presbítero Casiano Martínez, bendijo las instalaciones en un acto que congregó al alcalde Uripe Chacón, los concejales, Orlando Crino, el doctor Evaristo Zambrano y Walter Rosales, así
+        como al doctor Hernán Roa, Rosaura Mora y Nelly Zambrano de la Junta Directiva de la Asociación de Vecinos Los Alegres.
+      </p>
+      <br />
+      <h2>Misión</h2>
+      <p>Democratizar la comunicación fomentando la participación ciudadana, fundamentada en el reconocimiento de los valores culturales del pueblo al cual servimos.</p>
+      <h2>Visión</h2>
+      <p>Adecuar y fortalecer el mensaje comunicacional, en concordancia con los tiempos y tecnologías cambiantes, sin perder la esencia de nuestras raíces culturales.</p>
+    </section>
+    <section id="galeria">
+      <h2>Galería de imágenes</h2>
+      <div class="galeria" role="list">
+        <img src="imagenes/Imagen 3anv.jpeg" alt="3er aniversario" tabindex="0" role="listitem" />
+        <img src="imagenes/Imagen sede.jpeg" alt="foto de la Sede de Mantellina 99.9FM" tabindex="0" role="listitem" />
+        <img src="imagenes/Imagen 4anv.jpeg" alt="Imagen" tabindex="0" role="listitem" />
+        <img src="imagenes/Imagen 5anv.jpeg" alt="imagen 1" tabindex="0" role="listitem" />
+        <img src="imagenes/Imagen 6 anv.jpeg" alt="imagen 2" tabindex="0" role="listitem" />
+        <img src="imagenes/Imagen 6anv.jpeg" alt="imagen 3" tabindex="0" role="listitem" />
+        <img src="imagenes/Imagen 6anve.jpeg" alt="imagen 4" tabindex="0" role="listitem" />
+        <img src="imagenes/Imagen 7anv.jpeg" alt="imagen 5" tabindex="0" role="listitem" />
+        <img src="imagenes/Imagen 8anv.jpeg" alt="imagen 6" tabindex="0" role="listitem" />
+        <img src="imagenes/Imagen 9anv.jpeg" alt="imagen 7" tabindex="0" role="listitem" />
+      </div>
+    </section>
+  </main>
+  <footer>
+    <p>&copy; 2024 Mantellina 99.9FM</p>
+  </footer>
+
+  <!-- Superposición de galería de caja de luz -->
+  <div id="lightbox-overlay" aria-modal="true" role="dialog" aria-label="Galería de imágenes">
+    <div id="lightbox-content">
+      <button class="lightbox-close" aria-label="Cerrar galería">&times;</button>
+      <button class="lightbox-prev" aria-label="Imagen anterior">&#10094;</button>
+      <img id="lightbox-image" src="" alt="" />
+      <button class="lightbox-next" aria-label="Siguiente imagen">&#10095;</button>
+      <div id="lightbox-caption"></div>
+    </div>
+  </div>
+
+  <script>
+    (() => {
+      const galleryImages = document.querySelectorAll('.galeria img');
+      const lightboxOverlay = document.getElementById('lightbox-overlay');
+      const lightboxImage = document.getElementById('lightbox-image');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      const btnClose = lightboxOverlay.querySelector('.lightbox-close');
+      const btnNext = lightboxOverlay.querySelector('.lightbox-next');
+      const btnPrev = lightboxOverlay.querySelector('.lightbox-prev');
+
+      let currentIndex = 0;
+
+      function showLightbox(index) {
+        const img = galleryImages[index];
+        if (!img) return;
+        lightboxImage.src = img.src;
+        lightboxImage.alt = img.alt;
+        lightboxCaption.textContent = img.alt;
+        currentIndex = index;
+        lightboxOverlay.classList.add('active');
+        btnClose.focus();
+        document.body.style.overflow = 'hidden'; // Evitar el desplazamiento en segundo plano
+      }
+
+      function closeLightbox() {
+        lightboxOverlay.classList.remove('active');
+        lightboxImage.src = '';
+        lightboxImage.alt = '';
+        lightboxCaption.textContent = '';
+        document.body.style.overflow = '';
+      }
+
+      function showNext() {
+        let nextIndex = currentIndex + 1;
+        if (nextIndex >= galleryImages.length) {
+          nextIndex = 0;
+        }
+        showLightbox(nextIndex);
+      }
+
+      function showPrev() {
+        let prevIndex = currentIndex - 1;
+        if (prevIndex < 0) {
+          prevIndex = galleryImages.length - 1;
+        }
+        showLightbox(prevIndex);
+      }
+
+      galleryImages.forEach((img, index) => {
+        img.addEventListener('click', () => showLightbox(index));
+        img.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            showLightbox(index);
+          }
+        });
+      });
+
+      btnClose.addEventListener('click', closeLightbox);
+      btnNext.addEventListener('click', showNext);
+      btnPrev.addEventListener('click', showPrev);
+
+      // Navegación con el teclado dentro del lightbox
+      document.addEventListener('keydown', (e) => {
+        if (!lightboxOverlay.classList.contains('active')) return;
+        switch (e.key) {
+          case 'Escape':
+            closeLightbox();
+            break;
+          case 'ArrowRight':
+            showNext();
+            break;
+          case 'ArrowLeft':
+            showPrev();
+            break;
+        }
+      });
+
+      // Cerrar lightbox si hace clic fuera de la imagen
+      lightboxOverlay.addEventListener('click', (e) => {
+        if (e.target === lightboxOverlay) {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
+
