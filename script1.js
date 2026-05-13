@@ -3,7 +3,7 @@ const btnProgramacion = document.getElementById('btn-en-vivo');
 const radioPlayer = document.getElementById('audio-player');
 
 // URL de la radio 
-const streamUrl = "https://onlineradiobox.com/ve/San_Cristobal?cs=ve.tamastereo&played=1";
+const streamUrl = "http://p.onlineradiobox.com/ve/imaginacion/player/?cs=ve.imaginacion&played=1";
 
 btnProgramacion.addEventListener('click', () => {
     // Si la fuente está vacía, le asignamos la URL
