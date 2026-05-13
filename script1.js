@@ -3,7 +3,7 @@ const btnProgramacion = document.getElementById('btn-en-vivo');
 const radioPlayer = document.getElementById('audio-player');
 
 // URL de la radio 
-const streamUrl = "http://p.onlineradiobox.com/ve/imaginacion/player/?cs=ve.imaginacion&played=1";
+const streamUrl = "https://stream-179.zeno.fm/4r9xunshe18uv?zt=eyJhbGciOiJIUzI1NiJ9.eyJzdHJlYW0iOiI0cjl4dW5zaGUxOHV2IiwiaG9zdCI6InN0cmVhbS0xNzkuemVuby5mbSIsInJ0dGwiOjUsImp0aSI6IjJuRjZoYzJRU3k2Q2FRak1jbGd2UlEiLCJpYXQiOjE3Nzg3MDI0OTcsImV4cCI6MTc3ODcwMjU1N30.1iob8TliuCMxFQZPFjVpBAOio8tuEfptuoSRO98-9rQ";
 
 btnProgramacion.addEventListener('click', () => {
     // Si la fuente está vacía, le asignamos la URL
