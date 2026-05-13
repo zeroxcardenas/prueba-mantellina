@@ -3,7 +3,7 @@ const btnProgramacion = document.getElementById('btn-en-vivo');
 const radioPlayer = document.getElementById('audio-player');
 
 // URL de la radio 
-const streamUrl = "https://stream.zeno.fm/0r0xa792kwzuv";
+const streamUrl = "https://onlineradiobox.com/ve/San_Cristobal?cs=ve.tamastereo&played=1";
 
 btnProgramacion.addEventListener('click', () => {
     // Si la fuente está vacía, le asignamos la URL
